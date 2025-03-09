@@ -8,9 +8,15 @@ class UserService {
     async create(user) {
         return await userRepository.create(user)
     }
-
-    async getById(id) {
+    async getById(id){
         return await userRepository.getById(id)
+    }
+    async updateById(id, user){
+        return await userRepository.updateById(id, user)
+    }
+
+    async deleteById(id){
+        await userRepository.deleteById(id)
     }
 }
 
