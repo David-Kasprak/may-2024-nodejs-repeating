@@ -7,4 +7,6 @@ const router = (0, express_1.Router)();
 router.get('/', user_controller_1.userController.getAll);
 router.post('/', user_controller_1.userController.create);
 router.get('/:id', user_controller_1.userController.getById);
+router.put('/:id', user_controller_1.userController.update);
+router.delete('/:id', user_controller_1.userController.delete);
 exports.userRouter = router;

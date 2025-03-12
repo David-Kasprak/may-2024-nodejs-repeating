@@ -18,5 +18,16 @@ class UserController {
         const data = await user_service_1.userService.getById(id);
         res.status(status_codes_enum_1.StatusCodesEnum.OK).json(data);
     }
+    async update(req, res) {
+        const { id } = req.params;
+        const userUpdated = req.body;
+        const data = await user_service_1.userService.updateById(id, userUpdated);
+        res.status(status_codes_enum_1.StatusCodesEnum.OK).json(data);
+    }
+    async delete(req, res) {
+        const { id } = req.params;
+        await user_service_1.userService.deleteById(id);
+        res.status(status_codes_enum_1.StatusCodesEnum.NO_CONTENT).end();
+    }
 }
 exports.userController = new UserController();

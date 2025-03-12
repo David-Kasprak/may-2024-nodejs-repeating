@@ -13,6 +13,14 @@ class UserService {
     public getById(userId: string): Promise<IUserDTO> {
         return userRepository.getById(userId)
     }
+
+    public updateById(userId: string, userUpdated: IUserDTO) {
+        return userRepository.updateById(userId, userUpdated)
+    }
+
+    public deleteById(userId: string): Promise<void> {
+        return userRepository.deleteById(userId)
+    }
 }
 
 export const userService = new UserService();

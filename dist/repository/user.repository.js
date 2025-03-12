@@ -12,5 +12,11 @@ class UserRepository {
     getById(userId) {
         return user_model_1.User.findById(userId);
     }
+    updateById(userId, userUpdated) {
+        return user_model_1.User.findByIdAndUpdate(userId, userUpdated, { new: true });
+    }
+    deleteById(userId) {
+        return user_model_1.User.findByIdAndDelete(userId);
+    }
 }
 exports.userRepository = new UserRepository();
