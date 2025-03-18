@@ -11,18 +11,27 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use("/", api_router_1.apiRouter);
+app.use("*", (err, req, res, next) => {
+    const status = err.status || 500;
+    const message = err.message ?? "Something went wrong";
+    res.status(status).json({ status, message });
+});
+process.on("uncaughtException", (err) => {
+    console.log("uncaughtException", err);
+    process.exit(1);
+});
 const dbConnection = async () => {
     let dbCon = false;
     while (!dbCon) {
         try {
-            console.log('Connecting to DB...');
+            console.log("Connecting to DB...");
             await mongoose_1.default.connect(config_1.config.MONGO_URI);
             dbCon = true;
-            console.log('Database available!!!');
+            console.log("Database available!!!");
         }
         catch (e) {
-            console.log('Database unavailable, wait 3 seconds');
-            await new Promise(resolve => setTimeout(resolve, 3000));
+            console.log("Database unavailable, wait 3 seconds");
+            await new Promise((resolve) => setTimeout(resolve, 3000));
         }
     }
 };

@@ -8,10 +8,15 @@ class UserController {
         const data = await user_service_1.userService.getAll();
         res.status(status_codes_enum_1.StatusCodesEnum.OK).json(data);
     }
-    async create(req, res) {
-        const user = req.body;
-        const data = await user_service_1.userService.create(user);
-        res.status(status_codes_enum_1.StatusCodesEnum.CREATED).json(data);
+    async create(req, res, next) {
+        try {
+            const user = req.body;
+            const data = await user_service_1.userService.create(user);
+            res.status(status_codes_enum_1.StatusCodesEnum.CREATED).json(data);
+        }
+        catch (e) {
+            next(e);
+        }
     }
     async getById(req, res) {
         const { id } = req.params;
