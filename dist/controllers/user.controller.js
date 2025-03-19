@@ -1,18 +1,15 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.userController = void 0;
-const user_service_1 = require("../services/user.service");
-const status_codes_enum_1 = require("../enums/status-codes.enum");
+import { StatusCodesEnum } from "../enums/status-codes.enum";
+import { userService } from "../services/user.service";
 class UserController {
     async getAll(req, res) {
-        const data = await user_service_1.userService.getAll();
-        res.status(status_codes_enum_1.StatusCodesEnum.OK).json(data);
+        const data = await userService.getAll();
+        res.status(StatusCodesEnum.OK).json(data);
     }
     async create(req, res, next) {
         try {
             const user = req.body;
-            const data = await user_service_1.userService.create(user);
-            res.status(status_codes_enum_1.StatusCodesEnum.CREATED).json(data);
+            const data = await userService.create(user);
+            res.status(StatusCodesEnum.CREATED).json(data);
         }
         catch (e) {
             next(e);
@@ -20,19 +17,19 @@ class UserController {
     }
     async getById(req, res) {
         const { id } = req.params;
-        const data = await user_service_1.userService.getById(id);
-        res.status(status_codes_enum_1.StatusCodesEnum.OK).json(data);
+        const data = await userService.getById(id);
+        res.status(StatusCodesEnum.OK).json(data);
     }
     async update(req, res) {
         const { id } = req.params;
         const userUpdated = req.body;
-        const data = await user_service_1.userService.updateById(id, userUpdated);
-        res.status(status_codes_enum_1.StatusCodesEnum.OK).json(data);
+        const data = await userService.updateById(id, userUpdated);
+        res.status(StatusCodesEnum.OK).json(data);
     }
     async delete(req, res) {
         const { id } = req.params;
-        await user_service_1.userService.deleteById(id);
-        res.status(status_codes_enum_1.StatusCodesEnum.NO_CONTENT).end();
+        await userService.deleteById(id);
+        res.status(StatusCodesEnum.NO_CONTENT).end();
     }
 }
-exports.userController = new UserController();
+export const userController = new UserController();

@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.StatusCodesEnum = void 0;
-var StatusCodesEnum;
+export var StatusCodesEnum;
 (function (StatusCodesEnum) {
     StatusCodesEnum[StatusCodesEnum["OK"] = 200] = "OK";
     StatusCodesEnum[StatusCodesEnum["CREATED"] = 201] = "CREATED";
@@ -10,4 +7,4 @@ var StatusCodesEnum;
     StatusCodesEnum[StatusCodesEnum["UNAUTHORIZED"] = 401] = "UNAUTHORIZED";
     StatusCodesEnum[StatusCodesEnum["FORBIDDEN"] = 403] = "FORBIDDEN";
     StatusCodesEnum[StatusCodesEnum["NOT_FOUND"] = 404] = "NOT_FOUND";
-})(StatusCodesEnum || (exports.StatusCodesEnum = StatusCodesEnum = {}));
+})(StatusCodesEnum || (StatusCodesEnum = {}));

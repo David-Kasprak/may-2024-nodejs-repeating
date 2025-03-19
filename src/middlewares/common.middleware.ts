@@ -1,17 +1,19 @@
-import { Request, Response, NextFunction } from "express";
-import { isObjectIdOrHexString } from "mongoose";
-import { ApiError } from "../errors/api.error";
+import { NextFunction, Request, Response } from "express";
 import { ObjectSchema } from "joi";
+import { isObjectIdOrHexString } from "mongoose";
+
+import { ApiError } from "../errors/api.error";
 
 class CommonMiddleware {
     public isIdValidate(key: string) {
         return (req: Request, res: Response, next: NextFunction) => {
             try {
-                const { id } = req.params;
+                const id = req.params[key];
 
                 if (!isObjectIdOrHexString(id)) {
-                    throw new ApiError(`Invalid id [${key}]`, 400);
+                    throw new ApiError(`${key}: ${id} invalid id`, 400);
                 }
+                next();
             } catch (e) {
                 next(e);
             }
@@ -30,4 +32,4 @@ class CommonMiddleware {
     }
 }
 
-export const commonMidleware = new CommonMiddleware();
+export const commonMiddleware = new CommonMiddleware();
