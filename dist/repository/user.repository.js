@@ -15,5 +15,8 @@ class UserRepository {
     deleteById(userId) {
         return User.findByIdAndDelete(userId);
     }
+    getByEmail(email) {
+        return User.findOne({ email });
+    }
 }
 export const userRepository = new UserRepository();
