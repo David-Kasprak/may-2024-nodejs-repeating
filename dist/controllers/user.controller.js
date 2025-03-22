@@ -1,35 +1,45 @@
 import { StatusCodesEnum } from "../enums/status-codes.enum";
 import { userService } from "../services/user.service";
 class UserController {
-    async getAll(req, res) {
-        const data = await userService.getAll();
-        res.status(StatusCodesEnum.OK).json(data);
-    }
-    async create(req, res, next) {
+    async getAll(req, res, next) {
         try {
-            const user = req.body;
-            const data = await userService.create(user);
-            res.status(StatusCodesEnum.CREATED).json(data);
+            const data = await userService.getAll();
+            res.status(StatusCodesEnum.OK).json(data);
         }
         catch (e) {
             next(e);
         }
     }
-    async getById(req, res) {
-        const { id } = req.params;
-        const data = await userService.getById(id);
-        res.status(StatusCodesEnum.OK).json(data);
+    async getById(req, res, next) {
+        try {
+            const { id } = req.params;
+            const data = await userService.getById(id);
+            res.status(StatusCodesEnum.OK).json(data);
+        }
+        catch (e) {
+            next(e);
+        }
     }
-    async update(req, res) {
-        const { id } = req.params;
-        const userUpdated = req.body;
-        const data = await userService.updateById(id, userUpdated);
-        res.status(StatusCodesEnum.OK).json(data);
+    async update(req, res, next) {
+        try {
+            const { id } = req.params;
+            const userUpdated = req.body;
+            const data = await userService.updateById(id, userUpdated);
+            res.status(StatusCodesEnum.OK).json(data);
+        }
+        catch (e) {
+            next(e);
+        }
     }
-    async delete(req, res) {
-        const { id } = req.params;
-        await userService.deleteById(id);
-        res.status(StatusCodesEnum.NO_CONTENT).end();
+    async delete(req, res, next) {
+        try {
+            const { id } = req.params;
+            await userService.deleteById(id);
+            res.status(StatusCodesEnum.NO_CONTENT).end();
+        }
+        catch (e) {
+            next(e);
+        }
     }
 }
 export const userController = new UserController();
