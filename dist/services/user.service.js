@@ -35,5 +35,15 @@ class UserService {
             throw new ApiError("User with this email already exists", StatusCodesEnum.BAD_REQUEST);
         }
     }
+    async isActive(id) {
+        const user = await this.getById(id);
+        return user.isActive;
+    }
+    blockUser(userId) {
+        return userRepository.blockUser(userId);
+    }
+    unBlockUser(userId) {
+        return userRepository.unBlockUser(userId);
+    }
 }
 export const userService = new UserService();
