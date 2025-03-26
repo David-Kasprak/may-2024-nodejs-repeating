@@ -7,5 +7,7 @@ const config = {
     JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET,
     JWT_ACCESS_LIFETIME: process.env.JWT_ACCESS_LIFETIME,
     JWT_REFRESH_LIFETIME: process.env.JWT_REFRESH_LIFETIME,
+    EMAIL_USER: process.env.EMAIL_USER,
+    EMAIL_PASSWORD: process.env.EMAIL_PASSWORD,
 };
 export { config };
