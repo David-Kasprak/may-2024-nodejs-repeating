@@ -45,5 +45,8 @@ class UserService {
     unBlockUser(userId) {
         return userRepository.unBlockUser(userId);
     }
+    getByEmail(email) {
+        return userRepository.getByEmail(email);
+    }
 }
 export const userService = new UserService();

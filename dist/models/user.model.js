@@ -12,7 +12,7 @@ const userSchema = new Schema({
     name: { type: String, required: true },
     surname: { type: String, required: true },
     age: { type: Number, required: true },
-    isActive: { type: Boolean, default: true },
+    isActive: { type: Boolean, default: false },
     isDeleted: { type: Boolean, default: false },
     isVerified: { type: Boolean, default: false },
 }, { timestamps: true, versionKey: false });
